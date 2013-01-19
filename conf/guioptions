@@ -1,0 +1,26 @@
+
+" vim: filetype=vim
+
+" Sets the colorscheme
+colorscheme molokay
+set background=dark
+
+" set the space from the current line when scrolling
+set scrolloff=3
+
+" set the colors when using terminal commands
+set noguipty
+
+" command-line completion shows a list of matches
+set wmnu
+
+"Set a better font for mac os
+set guifont=Menlo\ For\ Powerline
+let g:Powerline_symbols = 'fancy'
+
+" Shows the relative line number
+set relativenumber
+
+"load the status line
+source ~/.vim/conf/statusline
+

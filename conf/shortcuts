@@ -1,0 +1,55 @@
+" vim: syntax=vim
+
+" Remaps the leader key to be ,
+let mapleader=","
+
+" Makes it easier to escape from the insert mode
+inoremap jj <ESC>
+
+" Disables the help when using F1
+nnoremap <silent> <F1> <nop>
+
+" NERDtree binding key
+nnoremap <silent> <F7> :NERDTreeToggle<cr>
+
+" Enables and disables the toggle the for the tasks
+noremap <silent> <leader>d :call Toggle_task_status()<CR>
+
+" Maps the switching of files through leader, leader
+nnoremap <leader><leader> <c-^>
+
+" Maps the maximizing of a window to space space
+nnoremap <expr> <silent> <space><space> ":vertical res<cr>:res<cr>"
+" Makes all the windows to have the same size
+nnoremap <space>= <c-w>=
+
+" Maps the CTRL-w j to CTRL-j
+nnoremap <c-j> <c-w>j
+" Maps the CTRL-w k to CTRL-k
+nnoremap <c-k> <c-w>k
+" Maps the CTRL-w h to CTRL-h
+nnoremap <c-h> <c-w>h
+" Maps the CTRL-w l to CTRL-l
+nnoremap <c-l> <c-w>l
+
+" Maps the return key to hide the highlighting
+nnoremap <cr> :noh<cr>
+
+" The arrow keys are mapped to nop
+" noremap <up> <nop>
+" noremap <down> <nop>
+" noremap <left> <nop>
+" noremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
+
+" Maps leader l to insert a hash rocket
+imap <c-l> <space>=><space>
+
+" Maps leader n to rename the current file
+map <leader>n :call RenameFile()<cr>
+
+" Maps alternating from test to production code to <leader>.
+map <leader>. :A<cr>
