@@ -11,6 +11,7 @@ nnoremap <silent> <F1> <nop>
 
 " NERDtree binding key
 nnoremap <silent> <F7> :NERDTreeToggle<cr>
+nmap <S-F7> :NERDTreeClose<CR>
 
 " Enables and disables the toggle the for the tasks
 noremap <silent> <leader>d :call Toggle_task_status()<CR>
@@ -45,6 +46,9 @@ nnoremap <cr> :noh<cr>
 " inoremap <left> <nop>
 " inoremap <right> <nop>
 
+noremap <silent> <C-F10> :resize +10<CR>
+noremap <silent> <C-F11> :resize -10<CR>
+
 " Maps leader l to insert a hash rocket
 imap <c-l> <space>=><space>
 
@@ -53,3 +57,6 @@ map <leader>n :call RenameFile()<cr>
 
 " Maps alternating from test to production code to <leader>.
 map <leader>. :A<cr>
+
+" , t -> to open CtrlP
+map <leader>t :CommandT<cr>

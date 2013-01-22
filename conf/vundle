@@ -7,23 +7,25 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 " Plugins
-" file finder
-Bundle "kien/ctrlp.vim"
+Bundle "vim-scripts/Command-T"
+
 " % to match
 Bundle "vim-scripts/matchit.zip"
 " file tree
 Bundle "scrooloose/nerdtree"
-" status bar
-Bundle "Lokaltog/vim-powerline"
-Bundle "vim-ruby/vim-ruby"
+"Bundle "vim-ruby/vim-ruby"
 " git wrapper
 Bundle 'tpope/vim-fugitive'
 Bundle "tpope/vim-surround"
 Bundle "tpope/vim-markdown"
-Bundle "tpope/vim-rails"
-Bundle "samsonw/vim-task"
+"Bundle "tpope/vim-rails"
+"Bundle "samsonw/vim-task"
 Bundle "jelera/vim-javascript-syntax"
+
+" required!
+filetype plugin indent on
+

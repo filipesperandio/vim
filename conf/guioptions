@@ -2,7 +2,7 @@
 " vim: filetype=vim
 
 " Sets the colorscheme
-colorscheme molokay
+colorscheme molokai
 set background=dark
 
 " set the space from the current line when scrolling
@@ -15,11 +15,10 @@ set noguipty
 set wmnu
 
 "Set a better font for mac os
-set guifont=Menlo\ For\ Powerline
+"python from powerline.ext.vim import source_plugin; source_plugin()
+set guifont=Menlo\ Regular\ For\ Powerline
 let g:Powerline_symbols = 'fancy'
 
-" Shows the relative line number
-set relativenumber
 
 "load the status line
 source ~/.vim/conf/statusline
