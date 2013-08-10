@@ -2,7 +2,7 @@ set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
 " Source initial configurations
-source $HOME/.vim/conf/initial
+ source $HOME/.vim/conf/initial
 
 " source vundle
 source $HOME/.vim/conf/vundle

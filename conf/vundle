@@ -25,7 +25,18 @@ Bundle "tpope/vim-markdown"
 "Bundle "tpope/vim-rails"
 "Bundle "samsonw/vim-task"
 Bundle "jelera/vim-javascript-syntax"
+Bundle "pangloss/vim-javascript"
+Bundle "kchmck/vim-coffee-script"
+
+Bundle "slim-template/vim-slim"
 
 " required!
 filetype plugin indent on
+
+" Colaboration
+Bundle 'FredKSchott/CoVim'
+
+Bundle 'bling/vim-airline'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
 

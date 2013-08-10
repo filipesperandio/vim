@@ -34,9 +34,6 @@ set hlsearch
 " Shows the matching bracket
 set showmatch
 
-" Set change word to append a dollar at the end of the selection
-set cpoptions+=$
-
 " Color scheme
 colorscheme molokai
 
@@ -84,9 +81,6 @@ set laststatus=2
 " Don't update the display while executing macros
 set lazyredraw
 
-" Show the current command in the lower right corner
-set showcmd
-
 " Show the current mode
 set showmode
 
@@ -105,9 +99,6 @@ set wildmenu
 " get rid of the silly characters in window separators
 set fillchars=""
 
-" Turn tabs into spaces
-set expandtab
-
 " Add ignorance of whitespace to diff
 set diffopt+=iwhite
 
@@ -119,4 +110,9 @@ set incsearch
 
 " Let the syntax highlighting for Java files allow cpp keywords
 let java_allow_cpp_keywords = 1
+
+set clipboard=unnamed
+set nofoldenable
+
+let g:ruby_path = system('rvm current')
 

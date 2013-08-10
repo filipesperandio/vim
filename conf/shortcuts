@@ -51,6 +51,8 @@ noremap <silent> <C-F11> :resize -10<CR>
 
 " Maps leader l to insert a hash rocket
 imap <c-l> <space>=><space>
+imap <c-p> <nop>
+inoremap >< ></<C-x><C-o><ESC>2ba
 
 " Maps leader n to rename the current file
 map <leader>n :call RenameFile()<cr>
@@ -58,5 +60,10 @@ map <leader>n :call RenameFile()<cr>
 " Maps alternating from test to production code to <leader>.
 map <leader>. :A<cr>
 
-" , t -> to open CtrlP
+" ,s save all
+map <leader>s :wa<cr>
+
+" , t -> to open CommandT
 map <leader>t :CommandT<cr>
+
+"inoremap <tab> <c-r>=Smart_TabComplete()<CR>

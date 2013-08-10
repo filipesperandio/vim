@@ -1,3 +1,6 @@
+"Set a better font for mac os
+"python from powerline.ext.vim import source_plugin; source_plugin()
+"set guifont=Menlo\ Regular\ for\ Powerline
 
 " vim: filetype=vim
 
@@ -8,8 +11,8 @@ set statusline+=%#warningmsg#
 " set the format of the status line
 set statusline+=%*
 set statusline+=%t              "filename
-set statusline+=%m              "modified flag
-set statusline+=%r              "read only flag
+"set statusline+=%m              "modified flag
+"set statusline+=%r              "read only flag
 set statusline+=\ \%y           "filetype
 set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
 set statusline+=%=              "left/right separator
