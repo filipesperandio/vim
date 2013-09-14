@@ -19,8 +19,8 @@ endif
 " Indentation
 filetype plugin indent on
 set smartindent
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 
 " Highlights extra whitespaces at the end of the lines
