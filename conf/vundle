@@ -9,7 +9,8 @@ call vundle#rc()
 " let Vundle manage Vundle => required!
 Bundle 'gmarik/vundle'
 
-" File finder - must have. Require C compilation after download plugin with BundleInstall
+" File finder - must have. Require C compilation after download plugin with BundleInstall: 
+" use system ruby (1.8.7) to execute bundle/Command-T/ruby/command-t/extconf.rb and then make install
 Bundle "vim-scripts/Command-T"
 
 " file tree
@@ -21,7 +22,8 @@ Bundle 'tpope/vim-fugitive'
 " editing...
 Bundle "tpope/vim-markdown"
 Bundle "tpope/vim-surround"
-" % to match
+
+" % to jump matching tags
 Bundle "vim-scripts/matchit.zip" 
 
 " ruby
@@ -39,15 +41,8 @@ Bundle "kchmck/vim-coffee-script"
 Bundle 'bling/vim-airline'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-
-" Ack
-Bundle 'mileszs/ack.vim'
-
-
-Bundle 'bling/vim-airline'
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
 "let g:airline_right_sep = '◀'
+
 " optional lib for code format
 " Bundle "Chiel92/vim-autoformat"
 
