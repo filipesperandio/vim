@@ -7,44 +7,46 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle => required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-" File finder - must have. Require C compilation after download plugin with BundleInstall: 
+" File finder - must have. Require C compilation after download plugin with PluginInstall: 
 " use system ruby (1.8.7) to execute bundle/Command-T/ruby/command-t/extconf.rb and then make install
-Bundle "vim-scripts/Command-T"
+Plugin 'vim-scripts/Command-T'
 
 " file tree
-Bundle "scrooloose/nerdtree"
+Plugin 'scrooloose/nerdtree'
 
 " git wrapper
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 " editing...
-Bundle "tpope/vim-markdown"
-Bundle "tpope/vim-surround"
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-surround'
 
 " % to jump matching tags
-Bundle "vim-scripts/matchit.zip" 
+Plugin 'vim-scripts/matchit.zip' 
 
 " ruby
-Bundle "vim-ruby/vim-ruby"
-Bundle "tpope/vim-cucumber"
-Bundle "tpope/vim-rails"
-Bundle "slim-template/vim-slim"
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-rails'
+Plugin 'slim-template/vim-slim'
 
 " javascript
-Bundle "jelera/vim-javascript-syntax"
-Bundle "pangloss/vim-javascript"
-Bundle "kchmck/vim-coffee-script"
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
 
 " Status bar
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 "let g:airline_right_sep = '◀'
 
 " optional lib for code format
-" Bundle "Chiel92/vim-autoformat"
+" Plugin 'Chiel92/vim-autoformat'
+
+Plugin 'tfnico/vim-gradle'
 
 
 " required!
