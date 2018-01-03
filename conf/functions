@@ -1,3 +1,21 @@
+function! AddTask()
+  exec ':normal! o' . '- [ ] '
+  :startinsert!
+endfunction
+
+function! ToggleTask()
+  let line = getline('.')
+  let done = match(line, '- \[x\]*') != -1
+  :echo done
+  if done
+    exec ':s/\[x\]/\[ \]/'
+  else
+    exec ':s/\[ \]/\[x\]/'
+  endif
+endfunction
+
+command! AddTask call AddTask()
+command! ToggleTask call ToggleTask()
 function! Smart_TabComplete()
   let line = getline('.')                         " current line
 

@@ -37,6 +37,10 @@ nnoremap <c-l> <c-w>l
 map <c-j> 10j
 map <c-k> 10k
 
+" Tasks
+map <c-n> :call AddTask()<cr>
+map <c-d> :call ToggleTask()<cr>
+
 " Maps the return key to hide the highlighting
 nnoremap <cr> :noh<cr>
 
