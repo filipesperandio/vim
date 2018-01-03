@@ -33,6 +33,11 @@ nnoremap <c-h> <c-w>h
 " CTRL-w l as CTRL-l
 nnoremap <c-l> <c-w>l
 
+
+" Tasks
+map <c-n> :call AddTask()<cr>
+map <c-d> :call ToggleTask()<cr>
+
 " Maps the return key to hide the highlighting
 nnoremap <cr> :noh<cr>
 
