@@ -33,6 +33,10 @@ nnoremap <c-h> <c-w>h
 " CTRL-w l as CTRL-l
 nnoremap <c-l> <c-w>l
 
+" Quicker jumping
+map <c-j> 10j
+map <c-k> 10k
+
 " Maps the return key to hide the highlighting
 nnoremap <cr> :noh<cr>
 
@@ -41,9 +45,10 @@ imap <c-l> <space>=><space>
 
 " disable ctrl p to trigger keyword completion
 imap <c-p> <nop>
+imap <c-p><c-p> require 'pry'; binding.pry
 
 " Maps alternating from test to production code
-map <silent> tt :A<cr>
+map <silent> ,, :call OpenTestAlternate()<cr>
 
 " ,t open CommandT, flushing cache before
 map <leader>t :CommandTFlush<cr><bar>:CommandT<cr>
@@ -52,20 +57,26 @@ map <leader>t :CommandTFlush<cr><bar>:CommandT<cr>
 map <leader>s :wa<cr>
 
 " save and run tests
-map <leader>r :wa\|:!rspec spec<cr>
+" map <leader>r :wa\|:!rspec spec<cr>
 
 " CTAGS
-map <leader>cc :!ctags --tag-relative -Rf.git/tags --exclude=.git && echo ctags_created<cr>
+" map <leader>cc :!ctags --tag-relative -Rf.git/tags --exclude=.git && echo ctags_created<cr>
+map <leader>cc :call CTags()<cr>
 
+nnoremap <leader>r :call RunTestFile()<cr>
+nnoremap <leader>R :call RunNearestTest()<cr>
+nnoremap <leader>a :call RunTests('')<cr>
+map <leader>n :call RenameFile()<cr>
 
-" TAB for word completion
-function! Tab_Or_Complete()
-  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-    return "\<C-N>"
-  else
-    return "\<Tab>"
-  endif
-endfunction
-inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-set dictionary="/usr/dict/words"
+" Rainbow parens
+"au VimEnter * RainbowParenthesesToggle
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces
 
+" Multicursors
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-m>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'

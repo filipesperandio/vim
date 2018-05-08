@@ -18,3 +18,129 @@ function! Smart_TabComplete()
     return "\<C-X>\<C-O>"                         " plugin matching
   endif
 endfunction
+
+" TAB for word completion
+function! Tab_Or_Complete()
+  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+    return "\<C-N>"
+  else
+    return "\<Tab>"
+  endif
+endfunction
+inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+set dictionary="/usr/dict/words"
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Rename current file (copied from grb https://github.com/garybernhardt/dotfiles/blob/master/.vimrc)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'))
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' .old_name
+    redraw!
+  endif
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Switch between test and production code (copied from grb https://github.com/garybernhardt/dotfiles/blob/master/.vimrc)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! OpenTestAlternate()
+  let new_file = AlternateForCurrentFile()
+  exec ':e ' . new_file
+endfunction
+function! AlternateForCurrentFile()
+  let current_file = expand("%")
+  let new_file = current_file
+  let in_spec = match(current_file, '^spec/') != -1
+  let going_to_spec = !in_spec
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<jobs\>') != -1 || match(current_file, '\<core\>') != -1 || match(current_file, '\<middleware\>') != -1 || match(current_file, '\<persistence\>') != -1 || match(current_file, '\<delivery\>') != -1
+  if going_to_spec
+    if in_app
+      let new_file = substitute(new_file, '^app/', '', '')
+    end
+    let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
+    let new_file = 'spec/' . new_file
+  else
+    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+    let new_file = substitute(new_file, '^spec/', '', '')
+    if in_app
+      let new_file = 'app/' . new_file
+    end
+  endif
+  return new_file
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Running tests (copied from grb https://github.com/garybernhardt/dotfiles/blob/master/.vimrc)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+function! RunTestFile(...)
+  if a:0
+    let command_suffix = a:1
+  else
+    let command_suffix = ""
+  endif
+
+  " Run the tests for the previously-marked file.
+  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|test.js\)$') != -1
+  if in_test_file
+    call SetTestFile()
+  elseif !exists("t:grb_test_file")
+    return
+  end
+  call RunTests(t:grb_test_file . command_suffix)
+endfunction
+
+function! RunNearestTest()
+  let spec_line_number = line('.')
+  call RunTestFile(":" . spec_line_number)
+endfunction
+
+function! SetTestFile()
+  " Set the spec file that tests will be run for.
+  let t:grb_test_file=@%
+endfunction
+
+function! RunTests(filename)
+  " Write the file and run tests for the given filename
+  if expand("%") != ""
+    :wa
+  end
+  if match(a:filename, '\.feature$') != -1
+    exec ":!scripts/features " . a:filename
+  else
+    " First choice: project-specific test script
+    if filereadable("script/test")
+      exec ":!script/test " . a:filename
+      " Fall back to the .test-commands pipe if available, assuming someone
+      " is reading the other side and running the commands
+    elseif filewritable(".test-commands")
+      let cmd = 'bundle exec rspec --color --format progress'
+      let full_cmd = ":!echo " . cmd . " " . a:filename . " > .test-commands"
+      exec full_cmd
+
+      " Write an empty string to block until the command completes
+      sleep 100m " milliseconds
+      :!echo > .test-commands
+      redraw!
+      " Fall back to a blocking test run with Bundler
+    elseif filereadable("Gemfile")
+      exec ":!bundle exec rspec --color --format progress " . a:filename
+      " Fall back to a normal blocking test run
+    elseif filereadable("Makefile")
+      if match(a:filename, '\.js$') != -1
+        exec ':!make test'
+      else
+        exec ':!make spec'
+      end
+    elseif match(a:filename, '\.test.js$') != -1
+      exec ':!yarn test'
+    else
+      exec ":!rspec --color " . a:filename
+    end
+  end
+endfunction

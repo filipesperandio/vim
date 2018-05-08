@@ -18,10 +18,14 @@ endif
 
 " Indentation
 filetype plugin indent on
-set smartindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
+set smartindent
+set autoindent
+
+" Make splits open on the right
+set splitright
 
 " Highlights extra whitespaces at the end of the lines
 :highlight ExtraWhitespace ctermfg=15 ctermbg=4 guifg=#CF6A4C guibg=#420E09
@@ -114,10 +118,17 @@ let java_allow_cpp_keywords = 1
 set clipboard=unnamed
 set nofoldenable
 
-let g:ruby_path = system('rbenv which ruby')
 
 set backup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 set wildignore+=*.swp,**/.git,**/node_modules
+
+" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+au BufRead,BufNewFile *.{json,ts} set ft=javascript
+
+set autoread
+
+set path+=$PWD/src
