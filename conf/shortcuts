@@ -39,7 +39,7 @@ map <c-k> 10k
 
 " Tasks
 map <c-n> :call AddTask()<cr>
-map <c-d> :call ToggleTask()<cr>
+map <c-x> :call ToggleTask()<cr>
 
 " Maps the return key to hide the highlighting
 nnoremap <cr> :noh<cr>
@@ -54,11 +54,27 @@ imap <c-p><c-p> require 'pry'; binding.pry
 " Maps alternating from test to production code
 map <silent> ,, :call OpenTestAlternate()<cr>
 
+" Rspec focus defining spec
+imap <c-f><c-f> , focus:true
+
+" JS console.log
+imap <c-l><c-l> console.log(">>>", );
+
+" Maps alternating from test to production code
+map <silent> ,, :call OpenTestAlternate()<cr>
+map <silent> mm :call OpenTestAlternateLib()<cr>
+
+" FZF
+map <leader>b :Buffers<cr>
+map <leader>t :GFiles<cr>
+
 " ,t open CommandT, flushing cache before
-map <leader>t :CommandTFlush<cr><bar>:CommandT<cr>
+" map <leader>t :CommandTFlush<cr><bar>:CommandT<cr>
+" map <leader>t :FuzzyOpen<CR>
 
 " ,s save all
 map <leader>s :wa<cr>
+nnoremap <silent> s <nop>
 
 " save and run tests
 " map <leader>r :wa\|:!rspec spec<cr>
@@ -66,6 +82,7 @@ map <leader>s :wa<cr>
 " CTAGS
 " map <leader>cc :!ctags --tag-relative -Rf.git/tags --exclude=.git && echo ctags_created<cr>
 map <leader>cc :call CTags()<cr>
+map <leader>ct :call CTags()<cr>
 
 nnoremap <leader>r :call RunTestFile()<cr>
 nnoremap <leader>R :call RunNearestTest()<cr>
@@ -79,8 +96,18 @@ map <leader>n :call RenameFile()<cr>
 "au Syntax * RainbowParenthesesLoadBraces
 
 " Multicursors
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-m>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+" let g:multi_cursor_use_default_mapping=0
+" let g:multi_cursor_next_key='<C-m>'
+" let g:multi_cursor_prev_key='<C-p>'
+" let g:multi_cursor_skip_key='<C-x>'
+" let g:multi_cursor_quit_key='<Esc>'
+
+" Tabs
+nnoremap tc  :tabclose<CR>
+nnoremap th  :tabfirst<CR>
+nnoremap tj  :tabnext<CR>
+nnoremap tk  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn  :tabnew<CR>
+nnoremap tm  :tabm<Space>
