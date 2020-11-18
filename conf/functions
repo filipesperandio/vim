@@ -1,3 +1,5 @@
+" vim: syntax=vim
+
 function! AddTask()
   exec ':normal! o' . '- [ ] '
   :startinsert!
@@ -16,6 +18,16 @@ endfunction
 
 command! AddTask call AddTask()
 command! ToggleTask call ToggleTask()
+
+function! OldHash()
+  exec ':s/\(\w*\):/"\1" =>/'
+endfunction
+command! OldHash call OldHash()
+
+function! CTags()
+ exec '!ctags -R --languages=ruby,javascript --exclude=node_modules --exclude="src/lib/**/*" --exclude=.git --exclude=log . $(bundle list --paths)'
+endfunction
+
 function! Smart_TabComplete()
   let line = getline('.')                         " current line
 
@@ -65,6 +77,27 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Switch between test and production code (copied from grb https://github.com/garybernhardt/dotfiles/blob/master/.vimrc)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! OpenTestAlternateLib()
+  let new_file = AlternateForCurrentFileLib()
+  exec ':e ' . new_file
+endfunction
+function! AlternateForCurrentFileLib()
+  let current_file = expand("%")
+  let new_file = current_file
+  let in_spec = match(current_file, '^spec/') != -1
+  let going_to_spec = !in_spec
+  if going_to_spec
+    let new_file = substitute(new_file, '^lib/', '', '')
+    let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
+    let new_file = 'spec/' . new_file
+  else
+    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+    let new_file = substitute(new_file, '^spec/', '', '')
+    let new_file = 'lib/' . new_file
+  endif
+  return new_file
+endfunction
+
 function! OpenTestAlternate()
   let new_file = AlternateForCurrentFile()
   exec ':e ' . new_file
@@ -74,15 +107,37 @@ function! AlternateForCurrentFile()
   let new_file = current_file
   let in_spec = match(current_file, '^spec/') != -1
   let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<jobs\>') != -1 || match(current_file, '\<core\>') != -1 || match(current_file, '\<middleware\>') != -1 || match(current_file, '\<persistence\>') != -1 || match(current_file, '\<delivery\>') != -1
+  let view_file = match(current_file, '\<views\>') != -1
+  let lib_file = match(current_file, '\<lib\>') != -1
+  let in_app = match(current_file, '\<controllers\>') != -1 ||
+             \  match(current_file, '\<models\>') != -1 ||
+             \  match(current_file, '\<presenters\>') != -1 ||
+             \  match(current_file, '\<views\>') != -1 ||
+             \  match(current_file, '\<helpers\>') != -1 ||
+             \  match(current_file, '\<jobs\>') != -1 ||
+             \  match(current_file, '\<core\>') != -1 ||
+             \  match(current_file, '\<middleware\>') != -1 ||
+             \  match(current_file, '\<persistence\>') != -1 ||
+             \  match(current_file, '\<delivery\>') != -1
   if going_to_spec
+    if lib_file
+      let new_file = substitute(new_file, '^lib/', '', '')
+    end
     if in_app
       let new_file = substitute(new_file, '^app/', '', '')
     end
-    let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
+    if view_file
+      let new_file = substitute(new_file, '\.slim$', '\.slim_spec.rb', '')
+    else
+      let new_file = substitute(new_file, '\.e\?rb$', '_spec.rb', '')
+    end
     let new_file = 'spec/' . new_file
   else
-    let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+    if view_file
+      let new_file = substitute(new_file, '\.slim_spec.rb$', '\.slim', '')
+    else
+      let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
+    end
     let new_file = substitute(new_file, '^spec/', '', '')
     if in_app
       let new_file = 'app/' . new_file
@@ -104,7 +159,7 @@ function! RunTestFile(...)
   endif
 
   " Run the tests for the previously-marked file.
-  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|test.js\)$') != -1
+  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\|test.js\)$') != -1
   if in_test_file
     call SetTestFile()
   elseif !exists("t:grb_test_file")
