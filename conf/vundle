@@ -48,6 +48,9 @@ Plugin 'tpope/vim-rails'
 " Plugin 'ecomba/vim-ruby-refactoring'
 " Plugin 'tpope/vim-cucumber'
 Plugin 'slim-template/vim-slim'
+Plugin 'ngmy/vim-rubocop'
+let g:vimrubocop_keymap = 0
+nmap <leader>e :RuboCop<cr>
 
 " javascript
 Plugin 'jelera/vim-javascript-syntax'
