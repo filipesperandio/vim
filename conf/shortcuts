@@ -22,6 +22,9 @@ nnoremap <space>= <c-w>=
 " F10 | F11 to decrease and increase split window size
 nnoremap <silent> <F10> :vertical resize -5<cr>
 nnoremap <silent> <F11> :vertical resize +5<cr>
+" F8 | F9 to decrease and increase split window size
+nnoremap <silent> <F8> :resize -5<cr>
+nnoremap <silent> <F9> :resize +5<cr>
 
 " Alternating windows
 " CTRL-w j as CTRL-j
