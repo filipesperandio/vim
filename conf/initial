@@ -28,7 +28,7 @@ set autoindent
 set splitright
 
 " Highlights extra whitespaces at the end of the lines
-:highlight ExtraWhitespace ctermfg=15 ctermbg=4 guifg=#CF6A4C guibg=#420E09
+:highlight ExtraWhitespace ctermfg=10 ctermbg=4 guifg=#CF6A4C guibg=#420E09
 :match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 " Search highlighting and incremental
@@ -110,7 +110,7 @@ set wildmenu
 set fillchars=""
 
 " Add ignorance of whitespace to diff
-set diffopt+=iwhite
+"set diffopt+=iwhite
 
 " Enable search highlighting
 set hlsearch

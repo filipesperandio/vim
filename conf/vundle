@@ -11,20 +11,29 @@ Plugin 'gmarik/vundle'
 
 " File finder - must have. Require C compilation after download plugin with PluginInstall: 
 " use system ruby (1.8.7) to execute bundle/Command-T/ruby/command-t/extconf.rb and then make install
-Plugin 'vim-scripts/Command-T'
+" Plugin 'vim-scripts/Command-T'
+
 " Plugin 'cloudhead/neovim-fuzzy'
+" Plugin 'bfrg/vim-fzy'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
+let g:fzf_preview_window = []
 
 " file tree
 Plugin 'scrooloose/nerdtree'
 Plugin 'mileszs/ack.vim'
 let g:ackprg = 'ag --vimgrep'
+cnoreabbrev ag Ack!
 
 " git wrapper
 Plugin 'tpope/vim-fugitive'
 " Plugin 'airblade/vim-gitgutter'
+
+" Open line in GH => <leader>GH
 Plugin 'ruanyl/vim-gh-line'
 
 " editing...
+Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-surround'
 Plugin 'docunext/closetag.vim'
@@ -35,16 +44,21 @@ Plugin 'vim-scripts/matchit.zip'
 
 " ruby
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-rails'
+" Plugin 'ecomba/vim-ruby-refactoring'
+" Plugin 'tpope/vim-cucumber'
 Plugin 'slim-template/vim-slim'
+Plugin 'ngmy/vim-rubocop'
+let g:vimrubocop_keymap = 0
+nmap <leader>e :RuboCop<cr>
 
 " javascript
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'prettier/vim-prettier'
+
+" add comments in most languages
 Plugin 'scrooloose/nerdcommenter'
 
 " Status bar
@@ -60,26 +74,26 @@ let g:airline_right_sep = ''
 " Plugin 'w0rp/ale'
 " let b:ale_fixers = ['prettier', 'eslint']
 
-Plugin 'tfnico/vim-gradle'
-Plugin 'vim-scripts/groovy.vim' 
+" Plugin 'tfnico/vim-gradle'
+" Plugin 'vim-scripts/groovy.vim'
 
 Plugin 'suan/vim-instant-markdown'
 let g:instant_markdown_autostart = 0
 
 " Plugin 'terryma/vim-multiple-cursors'
 
-Plugin 'mattn/gist-vim'
-Plugin 'mattn/webapi-vim'
-Plugin 'prettier/vim-prettier'
-
-" required!
-filetype plugin indent on
+" Plugin 'mattn/gist-vim'
+" Plugin 'mattn/webapi-vim'
 
 " kill buffer keeping window
 Plugin 'qpkorr/vim-bufkill'
 
-Plugin 'ap/vim-css-color'
+" Plugin 'ap/vim-css-color'
 
+Plugin 'maxjacobson/vim-fzf-coauthorship'
+
+" required!
+filetype plugin indent on
 " Color theme
 Plugin 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark = 'hard'

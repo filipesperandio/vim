@@ -22,6 +22,9 @@ nnoremap <space>= <c-w>=
 " F10 | F11 to decrease and increase split window size
 nnoremap <silent> <F10> :vertical resize -5<cr>
 nnoremap <silent> <F11> :vertical resize +5<cr>
+" F8 | F9 to decrease and increase split window size
+nnoremap <silent> <F8> :resize -5<cr>
+nnoremap <silent> <F9> :resize +5<cr>
 
 " Alternating windows
 " CTRL-w j as CTRL-j
@@ -50,15 +53,29 @@ imap <c-l> <space>=><space>
 " disable ctrl p to trigger keyword completion
 imap <c-p> <nop>
 imap <c-p><c-p> require 'pry'; binding.pry
+
+" Maps alternating from test to production code
+map <silent> ,, :call OpenTestAlternate()<cr>
+
+" Rspec focus defining spec
 imap <c-f><c-f> , focus:true
+
+" JS console.log
 imap <c-l><c-l> console.log(">>>", );
 
 " Maps alternating from test to production code
 map <silent> ,, :call OpenTestAlternate()<cr>
 map <silent> mm :call OpenTestAlternateLib()<cr>
 
+" FZF
+map <leader>b :Buffers<cr>
+map <leader>t :GFiles<cr>
+
+" Format File
+map <silent> <leader>f :call FormatFile()<cr>
+
 " ,t open CommandT, flushing cache before
-map <leader>t :CommandTFlush<cr><bar>:CommandT<cr>
+" map <leader>t :CommandTFlush<cr><bar>:CommandT<cr>
 " map <leader>t :FuzzyOpen<CR>
 
 " ,s save all
@@ -70,6 +87,7 @@ nnoremap <silent> s <nop>
 
 " CTAGS
 " map <leader>cc :!ctags --tag-relative -Rf.git/tags --exclude=.git && echo ctags_created<cr>
+map <leader>cc :call CTags()<cr>
 map <leader>ct :call CTags()<cr>
 
 nnoremap <leader>r :call RunTestFile()<cr>
@@ -84,12 +102,11 @@ map <leader>n :call RenameFile()<cr>
 "au Syntax * RainbowParenthesesLoadBraces
 
 " Multicursors
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-m>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
-
+" let g:multi_cursor_use_default_mapping=0
+" let g:multi_cursor_next_key='<C-m>'
+" let g:multi_cursor_prev_key='<C-p>'
+" let g:multi_cursor_skip_key='<C-x>'
+" let g:multi_cursor_quit_key='<Esc>'
 
 " Tabs
 nnoremap tc  :tabclose<CR>
