@@ -1,5 +1,13 @@
 " vim: syntax=vim
 
+function! ExtractUrl()
+  let line = getline('.')
+  let url = match(line, '/.*([A-Za-z]+:\/\/[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_:%&;\?\#\/.=]+)/\1')
+  echo url
+endfunction
+command! ExtractUrl call ExtractUrl()
+
+
 function! AddTask()
   exec ':normal! o' . '- [ ] '
   :startinsert!
@@ -217,3 +225,24 @@ function! RunTests(filename)
     end
   end
 endfunction
+
+function! FormatSQL()
+  exec ":%!sqlformat --reindent --keywords upper --identifiers lower -"
+endfunction
+
+function! Rubocop()
+  exec ":!bin/rubocop -x %"
+endfunction
+
+function! FormatFile()
+  if match(expand("%"), '.sql') != -1
+    call FormatSQL()
+  elseif match(expand("%"), '.rb') != -1
+    call Rubocop()
+  else
+    exec ":Prettier"
+  endif
+endfunction
+
+" Format File
+map <silent> <leader>f :call FormatFile()<cr>
