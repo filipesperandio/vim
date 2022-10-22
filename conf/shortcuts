@@ -71,6 +71,9 @@ map <silent> mm :call OpenTestAlternateLib()<cr>
 map <leader>b :Buffers<cr>
 map <leader>t :GFiles<cr>
 
+" Format File
+map <silent> <leader>f :call FormatFile()<cr>
+
 " ,t open CommandT, flushing cache before
 " map <leader>t :CommandTFlush<cr><bar>:CommandT<cr>
 " map <leader>t :FuzzyOpen<CR>
