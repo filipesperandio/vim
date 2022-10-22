@@ -1,9 +1,5 @@
 " vim: filetype=vim
 
-" Sets the colorscheme
-colorscheme molokai
-set background=dark
-
 " set the space from the current line when scrolling
 set scrolloff=3
 
@@ -12,8 +8,4 @@ set noguipty
 
 " command-line completion shows a list of matches
 set wmnu
-
-
-"load the status line
-source ~/.vim/conf/statusline
 

@@ -12,22 +12,30 @@ Plugin 'gmarik/vundle'
 " File finder - must have. Require C compilation after download plugin with PluginInstall: 
 " use system ruby (1.8.7) to execute bundle/Command-T/ruby/command-t/extconf.rb and then make install
 Plugin 'vim-scripts/Command-T'
+" Plugin 'cloudhead/neovim-fuzzy'
 
 " file tree
 Plugin 'scrooloose/nerdtree'
+Plugin 'mileszs/ack.vim'
+let g:ackprg = 'ag --vimgrep'
 
 " git wrapper
 Plugin 'tpope/vim-fugitive'
+" Plugin 'airblade/vim-gitgutter'
+Plugin 'ruanyl/vim-gh-line'
 
 " editing...
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-surround'
+Plugin 'docunext/closetag.vim'
+:let g:closetag_html_style=1
 
 " % to jump matching tags
 Plugin 'vim-scripts/matchit.zip' 
 
 " ruby
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-rails'
 Plugin 'slim-template/vim-slim'
@@ -36,18 +44,44 @@ Plugin 'slim-template/vim-slim'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'scrooloose/nerdcommenter'
 
 " Status bar
 Plugin 'bling/vim-airline'
+let g:airline_section_b = ''
+let g:airline_section_y = ''
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 "let g:airline_right_sep = '◀'
 
 " optional lib for code format
 " Plugin 'Chiel92/vim-autoformat'
+" Plugin 'w0rp/ale'
+" let b:ale_fixers = ['prettier', 'eslint']
 
 Plugin 'tfnico/vim-gradle'
+Plugin 'vim-scripts/groovy.vim' 
 
+Plugin 'suan/vim-instant-markdown'
+let g:instant_markdown_autostart = 0
+
+" Plugin 'terryma/vim-multiple-cursors'
+
+Plugin 'mattn/gist-vim'
+Plugin 'mattn/webapi-vim'
+Plugin 'prettier/vim-prettier'
 
 " required!
 filetype plugin indent on
+
+" kill buffer keeping window
+Plugin 'qpkorr/vim-bufkill'
+
+Plugin 'ap/vim-css-color'
+
+" Color theme
+Plugin 'morhetz/gruvbox'
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_hls_cursor = 'yellow'
+autocmd vimenter * ++nested colorscheme gruvbox

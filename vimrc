@@ -1,6 +1,6 @@
 
 " Source initial configurations
- source $HOME/.vim/conf/initial
+source $HOME/.vim/conf/initial
 
 " source vundle
 source $HOME/.vim/conf/vundle
@@ -15,4 +15,8 @@ source $HOME/.vim/conf/shortcuts
 source $HOME/.vim/conf/plugins
 
 " Source interface options
-source $HOME/.vim/conf/guioptions
+" source $HOME/.vim/conf/guioptions
+
+source $HOME/.vim/conf/statusline
+
+let g:ruby_path = system('rbenv which ruby')

@@ -5,7 +5,7 @@
 " vim: filetype=vim
 
 " display a warning if file encoding isnt utf-8
-set statusline=
+set statusline=000
 set statusline+=%#warningmsg#
 
 " set the format of the status line
